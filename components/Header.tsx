@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const LINKS = [
   { label: "Recursos", href: "#recursos" },
+  { label: "Preços", href: "#precos" },
   { label: "Depoimentos", href: "#depoimentos" },
   { label: "Blog", href: "#blog" },
 ];

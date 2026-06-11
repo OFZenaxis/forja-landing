@@ -7,6 +7,7 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Stats } from "@/components/Stats";
 import { PinnedShowcase } from "@/components/PinnedShowcase";
+import { Pricing } from "@/components/Pricing";
 import { SectionCurve } from "@/components/SectionCurve";
 import { Testimonials } from "@/components/Testimonials";
 import { CtaBanner } from "@/components/CtaBanner";
@@ -26,6 +27,7 @@ export default function Home() {
         <Hero />
         <Stats />
         <PinnedShowcase />
+        <Pricing />
         <SectionCurve />
         <Testimonials />
         <SectionCurve flip />
