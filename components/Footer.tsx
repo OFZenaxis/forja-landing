@@ -1,32 +1,31 @@
-import {
-  InstagramLogoIcon,
-  TiktokLogoIcon,
-  YoutubeLogoIcon,
-  XLogoIcon,
-} from "@phosphor-icons/react/dist/ssr";
+import { InstagramLogoIcon } from "@phosphor-icons/react/dist/ssr";
 import { Logo } from "./Logo";
 import { StoreBadges } from "./badges/StoreBadges";
 
+const INSTAGRAM = "https://instagram.com/agenciazenaxis";
+
+// Apenas âncoras de seções que existem de fato na página.
 const COLUMNS = [
   {
-    title: "Produto",
-    links: ["Recursos", "Para personais", "Para alunos", "Preços", "Novidades"],
+    title: "Navegação",
+    links: [
+      { label: "Recursos", href: "#recursos" },
+      { label: "Preços", href: "#precos" },
+      { label: "Depoimentos", href: "#depoimentos" },
+    ],
   },
   {
-    title: "Empresa",
-    links: ["Sobre", "Blog", "Carreiras", "Imprensa", "Contato"],
-  },
-  {
-    title: "Suporte",
-    links: ["Central de ajuda", "Status", "Privacidade", "Termos"],
+    title: "Saiba mais",
+    links: [
+      { label: "Perguntas frequentes", href: "#faq" },
+      { label: "Blog", href: "#blog" },
+      { label: "Entrar na lista", href: "#download" },
+    ],
   },
 ];
 
 const SOCIALS = [
-  { Icon: InstagramLogoIcon, label: "Instagram" },
-  { Icon: TiktokLogoIcon, label: "TikTok" },
-  { Icon: YoutubeLogoIcon, label: "YouTube" },
-  { Icon: XLogoIcon, label: "X" },
+  { Icon: InstagramLogoIcon, label: "Instagram", href: INSTAGRAM },
 ];
 
 export function Footer() {
@@ -45,10 +44,12 @@ export function Footer() {
               <StoreBadges />
             </div>
             <div className="mt-6 flex gap-3">
-              {SOCIALS.map(({ Icon, label }) => (
+              {SOCIALS.map(({ Icon, label, href }) => (
                 <a
                   key={label}
-                  href="#"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface text-accent transition-colors hover:bg-brand-600 hover:text-white"
                 >
@@ -58,19 +59,19 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Colunas de links */}
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+          {/* Colunas de links (âncoras reais) */}
+          <div className="grid grid-cols-2 gap-8">
             {COLUMNS.map((col) => (
               <div key={col.title}>
                 <h3 className="text-sm font-bold text-fg">{col.title}</h3>
                 <ul className="mt-4 space-y-3">
                   {col.links.map((link) => (
-                    <li key={link}>
+                    <li key={link.href}>
                       <a
-                        href="#"
+                        href={link.href}
                         className="text-sm text-fg-muted transition-colors hover:text-accent"
                       >
-                        {link}
+                        {link.label}
                       </a>
                     </li>
                   ))}
@@ -109,7 +110,7 @@ export function Footer() {
             >
               Zenaxis
             </a>{" "}
-            · Next.js, GSAP, Lenis · ~57 kB gzip · feito em Luziânia-GO
+            · Next.js, GSAP, Lenis · 169 kB First Load JS · feito em Luziânia-GO
           </p>
           <span aria-hidden className="hidden text-line sm:inline">
             ·
