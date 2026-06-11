@@ -96,6 +96,33 @@ export function Footer() {
             </a>
           </div>
         </div>
+
+        {/* Case study / crédito da agência */}
+        <div className="mt-6 flex flex-col items-center justify-center gap-2 text-xs text-fg-muted sm:flex-row sm:gap-3">
+          <p className="text-center">
+            Projeto demonstrativo da{" "}
+            <a
+              href="https://instagram.com/agenciazenaxis"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-accent transition-colors hover:underline"
+            >
+              Zenaxis
+            </a>{" "}
+            · Next.js, GSAP, Lenis · ~57 kB gzip · feito em Luziânia-GO
+          </p>
+          <span aria-hidden className="hidden text-line sm:inline">
+            ·
+          </span>
+          <a
+            href="https://instagram.com/agenciazenaxis"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-accent transition-colors hover:underline"
+          >
+            Quer uma landing assim?
+          </a>
+        </div>
       </div>
     </footer>
   );
