@@ -63,13 +63,20 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+// Aplica o tema antes do primeiro paint (evita flash). Lê localStorage e,
+// na ausência, respeita prefers-color-scheme.
+const themeScript = `(function(){try{var t=localStorage.getItem('forja-theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`;
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={poppins.variable}>
+    <html lang="pt-BR" className={poppins.variable} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="font-sans antialiased">{children}</body>
     </html>
   );

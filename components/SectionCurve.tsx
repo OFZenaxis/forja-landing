@@ -59,7 +59,7 @@ export function SectionCurve({
         <path
           ref={pathRef}
           d="M0,40 C360,120 1080,0 1440,70 L1440,120 L0,120 Z"
-          className="fill-brand-100/60"
+          className="fill-accent-soft/60"
           style={{ transformBox: "fill-box" }}
         />
       </svg>

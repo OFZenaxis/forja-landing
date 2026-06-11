@@ -7,36 +7,49 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * Capítulos de cor: muda suavemente o background do body conforme as seções
- * entram na viewport. Tons sutis dentro da paleta (cream / lilás claro).
- * Não renderiza nada. Conduzido por ScrollTrigger.
+ * Capítulos de cor: alterna sutilmente o fundo da página conforme as seções
+ * entram na viewport. Controla a CSS var `--page` (o body já tem transição de
+ * 0.2s em background-color), então funciona em qualquer tema e respeita o
+ * crossfade. Reaplica ao trocar de tema (evento `themechange`).
  */
-const CREAM = "#FBFAFF";
-const LILAC = "#F5F3FF"; // brand-50
+const LIGHT = { base: "251 250 255", alt: "245 243 255" };
+const DARK = { base: "18 9 35", alt: "27 16 58" };
 
-const MAP: Array<{ id: string; color: string }> = [
-  { id: "topo", color: CREAM },
-  { id: "recursos", color: LILAC },
-  { id: "depoimentos", color: CREAM },
-  { id: "download", color: LILAC },
-  { id: "blog", color: CREAM },
+// Ordem das seções na página (precos/faq são adicionadas em outros itens;
+// getElementById ignora as que ainda não existem).
+const SECTIONS = [
+  "topo",
+  "precos",
+  "recursos",
+  "depoimentos",
+  "faq",
+  "download",
+  "blog",
 ];
 
 export function BackgroundChapters() {
   useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reduce.matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let current = 0;
+    const apply = () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      const pal = isDark ? DARK : LIGHT;
+      const tint = current % 2 === 0 ? pal.base : pal.alt;
+      document.body.style.setProperty("--page", tint);
+    };
+
+    const onThemeChange = () => apply();
+    window.addEventListener("themechange", onThemeChange);
 
     const ctx = gsap.context(() => {
-      MAP.forEach(({ id, color }) => {
+      SECTIONS.forEach((id, i) => {
         const el = document.getElementById(id);
         if (!el) return;
-        const set = () =>
-          gsap.to(document.body, {
-            backgroundColor: color,
-            duration: 0.6,
-            overwrite: "auto",
-          });
+        const set = () => {
+          current = i;
+          apply();
+        };
         ScrollTrigger.create({
           trigger: el,
           start: "top 55%",
@@ -46,7 +59,12 @@ export function BackgroundChapters() {
         });
       });
     });
-    return () => ctx.revert();
+
+    return () => {
+      window.removeEventListener("themechange", onThemeChange);
+      ctx.revert();
+      document.body.style.removeProperty("--page");
+    };
   }, []);
 
   return null;

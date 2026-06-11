@@ -159,12 +159,12 @@ export function Hero() {
       >
         {/* Coluna de texto */}
         <div className="text-center lg:text-left">
-          <span className="hero-fade inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white/70 px-4 py-1.5 text-xs font-semibold text-brand-700 shadow-soft backdrop-blur">
+          <span className="hero-fade inline-flex items-center gap-2 rounded-full border border-line bg-surface/70 px-4 py-1.5 text-xs font-semibold text-accent shadow-soft backdrop-blur">
             <span className="flex h-1.5 w-1.5 rounded-full bg-coral" />
             Novidade: temporadas e ligas entre alunos
           </span>
 
-          <h1 className="mt-5 text-[2.6rem] font-extrabold leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-[4.2rem]">
+          <h1 className="mt-5 text-[2.6rem] font-extrabold leading-[1.05] tracking-tight text-fg sm:text-6xl lg:text-[4.2rem]">
             <span className="line-mask line-1">
               {LINE1.map((w) => (
                 <Word key={w} text={w} />
@@ -177,7 +177,7 @@ export function Hero() {
             </span>
           </h1>
 
-          <p className="hero-fade mx-auto mt-5 max-w-md text-base text-muted sm:text-lg lg:mx-0">
+          <p className="hero-fade mx-auto mt-5 max-w-md text-base text-fg-muted sm:text-lg lg:mx-0">
             O app que transforma o treino do seu personal em missões diárias,
             streaks e conquistas. Constância vira hábito.
           </p>
@@ -186,13 +186,13 @@ export function Hero() {
             <StoreBadges />
           </div>
 
-          <div className="hero-fade mt-5 flex items-center justify-center gap-2 text-sm text-muted lg:justify-start">
+          <div className="hero-fade mt-5 flex items-center justify-center gap-2 text-sm text-fg-muted lg:justify-start">
             <span className="flex">
               {Array.from({ length: 5 }).map((_, i) => (
                 <StarIcon key={i} size={16} weight="fill" className="text-sun" />
               ))}
             </span>
-            <span className="font-semibold text-ink">4,9</span>
+            <span className="font-semibold text-fg">4,9</span>
             <span>· grátis para começar</span>
           </div>
         </div>
@@ -213,16 +213,16 @@ export function Hero() {
           </div>
 
           {/* Cards flutuantes */}
-          <div className="hero-chip-float absolute -left-2 top-[22%] z-20 rounded-2xl border border-white bg-white/95 px-3 py-2 shadow-lift backdrop-blur sm:-left-4">
-            <p className="text-[10px] font-medium text-muted">Hoje</p>
-            <p className="text-sm font-bold text-brand-600">+195 XP</p>
+          <div className="hero-chip-float absolute -left-2 top-[22%] z-20 rounded-2xl border border-line bg-surface/95 px-3 py-2 shadow-lift backdrop-blur sm:-left-4">
+            <p className="text-[10px] font-medium text-fg-muted">Hoje</p>
+            <p className="text-sm font-bold text-accent">+195 XP</p>
           </div>
 
-          <div className="hero-chip-float absolute -right-1 bottom-[18%] z-20 flex items-center gap-2 rounded-2xl border border-white bg-white/95 px-3 py-2 shadow-lift backdrop-blur sm:-right-3">
+          <div className="hero-chip-float absolute -right-1 bottom-[18%] z-20 flex items-center gap-2 rounded-2xl border border-line bg-surface/95 px-3 py-2 shadow-lift backdrop-blur sm:-right-3">
             <span className="text-lg">🔥</span>
             <div>
-              <p className="text-[10px] font-medium text-muted">Streak</p>
-              <p className="text-sm font-bold text-ink">96 dias</p>
+              <p className="text-[10px] font-medium text-fg-muted">Streak</p>
+              <p className="text-sm font-bold text-fg">96 dias</p>
             </div>
           </div>
         </div>

@@ -2,8 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---- Tokens semânticos de tema (canais RGB para suportar /opacity) ---- */
 :root {
-  --bg: #fbfaff;
+  --page: 251 250 255; /* #FBFAFF */
+  --surface: 255 255 255; /* #FFFFFF */
+  --surface-2: 245 243 255; /* #F5F3FF */
+  --fg: 30 27 46; /* #1E1B2E */
+  --fg-muted: 107 101 128; /* #6B6580 */
+  --line: 236 233 251; /* #ECE9FB */
+  --accent: 124 58 237; /* #7C3AED */
+  --accent-soft: 237 233 254; /* #EDE9FE */
+  color-scheme: light;
+}
+
+html.dark {
+  --page: 18 9 35; /* #120923 roxo profundo */
+  --surface: 31 18 64; /* #1F1240 */
+  --surface-2: 40 23 84; /* #281754 */
+  --fg: 244 241 255; /* #F4F1FF */
+  --fg-muted: 173 163 204; /* #ADA3CC */
+  --line: 52 38 92; /* #34265C */
+  --accent: 167 139 250; /* #A78BFA brand-400 (contraste AA no escuro) */
+  --accent-soft: 49 31 92; /* #311F5C */
+  color-scheme: dark;
 }
 
 html {
@@ -12,12 +33,14 @@ html {
 }
 
 body {
-  background-color: var(--bg);
-  color: theme("colors.ink");
+  background-color: rgb(var(--page));
+  color: rgb(var(--fg));
   font-feature-settings: "ss01", "cv01";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  /* Crossfade suave de tema (apenas cor, nunca layout) */
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 ::selection {
@@ -48,12 +71,24 @@ body {
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-brand-200 bg-white/70 px-6 py-3 text-sm font-semibold text-brand-700 backdrop-blur transition-colors duration-200 hover:border-brand-300 hover:bg-white active:scale-[0.97];
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-line bg-surface/70 px-6 py-3 text-sm font-semibold text-accent backdrop-blur transition-colors duration-200 hover:border-accent hover:bg-surface active:scale-[0.97];
   }
 
   /* Cartão base com cantos bem arredondados */
   .card {
-    @apply rounded-4xl border border-white bg-white shadow-soft;
+    @apply rounded-4xl border border-line bg-surface shadow-soft;
+  }
+}
+
+/* Crossfade de tema: só propriedades de cor mudam (nunca layout).
+   Só dispara em mudança de valor (toggle/hover), não no primeiro paint. */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
   }
 }
 

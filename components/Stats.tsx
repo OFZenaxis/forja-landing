@@ -69,11 +69,11 @@ export function Stats() {
 
   return (
     <section ref={ref} aria-label="Números do Forja" className="container-px py-16">
-      <div className="grid grid-cols-2 gap-x-4 gap-y-10 rounded-5xl border border-white bg-white/70 p-8 shadow-soft backdrop-blur sm:p-12 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-x-4 gap-y-10 rounded-5xl border border-line bg-surface/70 p-8 shadow-soft backdrop-blur sm:p-12 lg:grid-cols-4">
         {STATS.map((s) => (
           <div
             key={s.label}
-            className="stat-item text-center lg:border-r lg:border-brand-100 lg:last:border-r-0"
+            className="stat-item text-center lg:border-r lg:border-line lg:last:border-r-0"
           >
             <p className="text-5xl font-extrabold leading-none tracking-tight text-gradient sm:text-6xl">
               <span
@@ -88,7 +88,7 @@ export function Stats() {
                 {s.suffix ?? ""}
               </span>
             </p>
-            <p className="mx-auto mt-3 max-w-[15ch] text-sm font-medium text-muted">
+            <p className="mx-auto mt-3 max-w-[15ch] text-sm font-medium text-fg-muted">
               {s.label}
             </p>
           </div>

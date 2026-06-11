@@ -15,7 +15,7 @@ export function Logo({
       <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-brand-600 to-coral text-white shadow-soft">
         <LightningIcon size={18} weight="fill" />
       </span>
-      <span className={`text-xl ${dark ? "text-white" : "text-ink"}`}>
+      <span className={`text-xl ${dark ? "text-white" : "text-fg"}`}>
         Forja
       </span>
     </span>

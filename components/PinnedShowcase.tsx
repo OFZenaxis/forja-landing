@@ -37,20 +37,20 @@ function ChapterText({
 }) {
   return (
     <>
-      <span className="inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold text-brand-700">
+      <span className="inline-block rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold text-accent">
         0{index + 1}
       </span>
-      <h3 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-4xl lg:text-5xl">
+      <h3 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-fg sm:text-4xl lg:text-5xl">
         {chapter.title} <span className="text-gradient">{chapter.highlight}</span>
       </h3>
-      <p className="mt-4 max-w-md text-base text-muted">{chapter.body}</p>
+      <p className="mt-4 max-w-md text-base text-fg-muted">{chapter.body}</p>
       <ul className="mt-6 flex max-w-md flex-col gap-3">
         {chapter.bullets.map((b) => (
           <li
             key={b}
-            className="flex items-center gap-3 text-left text-sm font-medium text-ink"
+            className="flex items-center gap-3 text-left text-sm font-medium text-fg"
           >
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-600">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent">
               <CheckIcon size={14} weight="bold" />
             </span>
             {b}
@@ -169,10 +169,10 @@ export function PinnedShowcase() {
     >
       {/* Cabeçalho da seção */}
       <div className="container-px pt-20 text-center sm:pt-28">
-        <span className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-600">
+        <span className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">
           Recursos
         </span>
-        <h2 className="mx-auto mt-3 max-w-2xl text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
+        <h2 className="mx-auto mt-3 max-w-2xl text-4xl font-extrabold tracking-tight text-fg sm:text-5xl">
           Tudo que prende o aluno no treino
         </h2>
       </div>

@@ -17,7 +17,7 @@ function Card({ t, dim = false }: { t: Testimonial; dim?: boolean }) {
 
   return (
     <figure
-      className={`flex w-[300px] shrink-0 flex-col rounded-4xl border border-white bg-white p-6 shadow-soft transition-transform duration-300 hover:-translate-y-1 sm:w-[340px] ${
+      className={`flex w-[300px] shrink-0 flex-col rounded-4xl border border-line bg-surface p-6 shadow-soft transition-transform duration-300 hover:-translate-y-1 sm:w-[340px] ${
         dim ? "opacity-90" : ""
       }`}
     >
@@ -27,23 +27,23 @@ function Card({ t, dim = false }: { t: Testimonial; dim?: boolean }) {
             <StarIcon key={i} size={16} weight="fill" className="text-sun" />
           ))}
         </div>
-        <QuotesIcon size={24} weight="fill" className="text-brand-100" />
+        <QuotesIcon size={24} weight="fill" className="text-accent-soft" />
       </div>
 
-      <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-ink">
+      <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-fg">
         “{t.quote}”
       </blockquote>
 
-      <figcaption className="mt-5 flex items-center gap-3 border-t border-brand-50 pt-4">
+      <figcaption className="mt-5 flex items-center gap-3 border-t border-line pt-4">
         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-coral text-sm font-bold text-white">
           {initial}
         </span>
         <div className="leading-tight">
-          <p className="text-sm font-bold text-ink">{t.name}</p>
-          <p className="text-xs text-muted">
+          <p className="text-sm font-bold text-fg">{t.name}</p>
+          <p className="text-xs text-fg-muted">
             {t.role} · {t.location}
           </p>
-          <p className="text-[11px] text-muted/70">{t.date}</p>
+          <p className="text-[11px] text-fg-muted/70">{t.date}</p>
         </div>
       </figcaption>
     </figure>
@@ -135,10 +135,10 @@ export function Testimonials() {
       className="overflow-hidden py-20 sm:py-28"
     >
       <div className="container-px mx-auto max-w-2xl text-center">
-        <h2 className="text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
+        <h2 className="text-4xl font-extrabold tracking-tight text-fg sm:text-5xl">
           Quem treina com o Forja não volta atrás
         </h2>
-        <p className="mx-auto mt-4 max-w-xl text-muted">
+        <p className="mx-auto mt-4 max-w-xl text-fg-muted">
           Histórias reais de alunos e personais que fizeram da constância um
           hábito.
         </p>

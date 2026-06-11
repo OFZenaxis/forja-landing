@@ -43,12 +43,12 @@ export function Preloader() {
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-cream"
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-page"
     >
       <div ref={logoRef}>
         <Logo />
       </div>
-      <div className="mt-6 h-[3px] w-40 overflow-hidden rounded-full bg-brand-100">
+      <div className="mt-6 h-[3px] w-40 overflow-hidden rounded-full bg-accent-soft">
         <div
           ref={barRef}
           className="h-full w-full origin-left rounded-full bg-gradient-to-r from-brand-600 to-coral"
