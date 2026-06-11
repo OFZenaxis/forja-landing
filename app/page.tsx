@@ -1,6 +1,5 @@
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { Preloader } from "@/components/Preloader";
-import { CustomCursor } from "@/components/CustomCursor";
 import { BackgroundChapters } from "@/components/BackgroundChapters";
 import { Blobs } from "@/components/Blobs";
 import { ReadingProgress } from "@/components/ReadingProgress";
@@ -19,7 +18,6 @@ export default function Home() {
     <>
       <Preloader />
       <SmoothScroll />
-      <CustomCursor />
       <BackgroundChapters />
       <ReadingProgress />
       <Blobs />
