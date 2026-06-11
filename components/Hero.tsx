@@ -3,7 +3,11 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { StarIcon } from "@phosphor-icons/react/dist/ssr";
+import {
+  StarIcon,
+  LightningIcon,
+  FireIcon,
+} from "@phosphor-icons/react/dist/ssr";
 import { PhoneFrame } from "./phone/PhoneFrame";
 import { ScreenChecklist } from "./phone/ScreenChecklist";
 import { StoreBadges } from "./badges/StoreBadges";
@@ -183,15 +187,22 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Cards flutuantes */}
-          <div className="absolute -left-2 top-[22%] z-20 animate-fadeUp rounded-2xl border border-line bg-surface/95 px-3 py-2 shadow-lift backdrop-blur [animation-delay:560ms] sm:-left-4">
-            <p className="text-[10px] font-medium text-fg-muted">Hoje</p>
-            <p className="text-sm font-bold text-accent">+195 XP</p>
+          {/* Cards flutuantes glass — só em lg+ (no mobile atrapalham) */}
+          <div className="absolute -left-2 top-[22%] z-20 hidden animate-fadeUp items-center gap-2 rounded-2xl border border-line bg-surface/80 px-3 py-2 shadow-soft backdrop-blur [animation-delay:560ms] sm:-left-4 lg:flex">
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent-soft text-accent">
+              <LightningIcon size={15} weight="fill" />
+            </span>
+            <div className="leading-tight">
+              <p className="text-[10px] font-medium text-fg-muted">Hoje</p>
+              <p className="text-sm font-bold text-fg">+195 XP</p>
+            </div>
           </div>
 
-          <div className="absolute -right-1 bottom-[18%] z-20 flex animate-fadeUp items-center gap-2 rounded-2xl border border-line bg-surface/95 px-3 py-2 shadow-lift backdrop-blur [animation-delay:620ms] sm:-right-3">
-            <span className="text-lg">🔥</span>
-            <div>
+          <div className="absolute -right-1 bottom-[18%] z-20 hidden animate-fadeUp items-center gap-2 rounded-2xl border border-line bg-surface/80 px-3 py-2 shadow-soft backdrop-blur [animation-delay:620ms] sm:-right-3 lg:flex">
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent-soft text-accent">
+              <FireIcon size={15} weight="fill" />
+            </span>
+            <div className="leading-tight">
               <p className="text-[10px] font-medium text-fg-muted">Streak</p>
               <p className="text-sm font-bold text-fg">96 dias</p>
             </div>
