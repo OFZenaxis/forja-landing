@@ -164,13 +164,16 @@ export function Hero() {
             Novidade: temporadas e ligas entre alunos
           </span>
 
-          <h1 className="mt-5 text-[2.6rem] font-extrabold leading-[1.05] tracking-tight text-fg sm:text-6xl lg:text-[4.2rem]">
-            <span className="line-mask line-1">
+          <h1
+            aria-label="Treine como um jogo. Evolua de verdade."
+            className="mt-5 text-[2.6rem] font-extrabold leading-[1.05] tracking-tight text-fg sm:text-6xl lg:text-[4.2rem]"
+          >
+            <span aria-hidden="true" className="line-mask line-1">
               {LINE1.map((w) => (
                 <Word key={w} text={w} />
               ))}
             </span>
-            <span className="line-mask line-2">
+            <span aria-hidden="true" className="line-mask line-2">
               {LINE2.map((w) => (
                 <Word key={w} text={w} gradient={w === "verdade."} />
               ))}
