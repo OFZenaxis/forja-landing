@@ -122,7 +122,7 @@ export function ScreenChecklist() {
               <CircleIcon size={20} className="text-brand-300" />
             )}
             <span
-              className={`flex-1 text-[12px] font-medium ${
+              className={`min-w-0 flex-1 truncate whitespace-nowrap text-[12px] font-medium ${
                 t.done ? "text-muted line-through" : "text-ink"
               }`}
             >

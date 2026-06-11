@@ -23,7 +23,7 @@ export function PhoneFrame({
   return (
     <div
       aria-hidden="true"
-      className={`relative aspect-[9/19] w-[260px] shrink-0 rounded-[2.75rem] bg-ink p-[10px] shadow-phone sm:w-[288px] ${className}`}
+      className={`relative aspect-[9/19] w-[288px] shrink-0 rounded-[2.75rem] bg-ink p-[10px] shadow-phone ${className}`}
     >
       {/* Brilho da borda metálica */}
       <div className="pointer-events-none absolute inset-0 rounded-[2.75rem] ring-1 ring-white/15" />
