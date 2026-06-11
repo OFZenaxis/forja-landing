@@ -25,10 +25,11 @@ export function PhoneFrame({
       aria-hidden="true"
       className={`relative aspect-[9/19] w-[288px] shrink-0 rounded-[2.75rem] bg-ink p-[10px] shadow-phone ${className}`}
     >
-      {/* Brilho da borda metálica */}
-      <div className="pointer-events-none absolute inset-0 rounded-[2.75rem] ring-1 ring-white/15" />
-      {/* Tela */}
-      <div className="relative h-full w-full overflow-hidden rounded-[2.125rem] bg-cream isolate [transform:translateZ(0)]">
+      {/* Brilho da borda metálica (inset, p/ não vazar uma borda translúcida) */}
+      <div className="pointer-events-none absolute inset-0 rounded-[2.75rem] ring-1 ring-inset ring-white/10" />
+      {/* Tela — overflow-hidden + translateZ + clip-path geométrico garantem
+          que filhos compostos (blur/slide) não furem os cantos arredondados */}
+      <div className="relative h-full w-full overflow-hidden rounded-[2.125rem] bg-cream isolate [clip-path:inset(0_round_2.125rem)] [transform:translateZ(0)]">
         {/* Dynamic island */}
         <div className="absolute left-1/2 top-2.5 z-20 h-[22px] w-[86px] -translate-x-1/2 rounded-full bg-ink" />
         {children}
