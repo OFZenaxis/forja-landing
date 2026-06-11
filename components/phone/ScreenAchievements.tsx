@@ -12,6 +12,7 @@ import {
   ShareNetworkIcon,
 } from "@phosphor-icons/react/dist/ssr";
 import { StatusBar, TabBar } from "./parts";
+import { particleBurst } from "@/lib/particleBurst";
 
 const BADGES = [
   { icon: FireIcon, label: "90 dias", on: true, c: "from-sun to-coral" },
@@ -71,9 +72,15 @@ export function ScreenAchievements() {
 
       {/* Medalha em destaque */}
       <div className="mx-5 mt-3 flex items-center gap-3 rounded-3xl bg-gradient-to-br from-brand-600 to-brand-500 p-4 text-white shadow-soft">
-        <div className="medal-wobble flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15">
+        <button
+          type="button"
+          title="🔥"
+          aria-label="Soltar faíscas"
+          onClick={(e) => particleBurst(e.currentTarget)}
+          className="medal-wobble flex h-14 w-14 cursor-pointer items-center justify-center rounded-2xl bg-white/15 transition-transform active:scale-95"
+        >
           <FireIcon size={30} weight="fill" className="text-sun" />
-        </div>
+        </button>
         <div>
           <p className="text-sm font-bold">90 dias de streak</p>
           <p className="text-[11px] text-white/75">

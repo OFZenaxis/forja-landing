@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { FireIcon, TrophyIcon } from "@phosphor-icons/react/dist/ssr";
 import { StatusBar, TabBar } from "./parts";
+import { particleBurst } from "@/lib/particleBurst";
 
 const WEEK = [
   { d: "S", on: true },
@@ -47,9 +48,15 @@ export function ScreenStreak() {
       <StatusBar dark />
 
       <div className="flex flex-1 flex-col items-center px-5 pt-6 text-center">
-        <div className="flame flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-sun to-coral shadow-[0_0_40px_rgba(255,176,32,0.45)]">
+        <button
+          type="button"
+          title="🔥"
+          aria-label="Soltar faíscas"
+          onClick={(e) => particleBurst(e.currentTarget)}
+          className="flame flex h-24 w-24 cursor-pointer items-center justify-center rounded-full bg-gradient-to-br from-sun to-coral shadow-[0_0_40px_rgba(255,176,32,0.45)] transition-transform active:scale-95"
+        >
           <FireIcon size={48} weight="fill" className="text-white" />
-        </div>
+        </button>
 
         <p className="mt-4 text-4xl font-extrabold leading-none">96</p>
         <p className="text-xs font-medium text-white/70">dias seguidos</p>
