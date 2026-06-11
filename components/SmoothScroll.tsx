@@ -51,14 +51,18 @@ export function SmoothScroll() {
     };
     document.addEventListener("click", onClick);
 
-    // Recalcula posições depois que fontes/imagens assentam.
-    const refresh = () => ScrollTrigger.refresh();
-    const t = window.setTimeout(refresh, 300);
-    window.addEventListener("load", refresh);
+    // Um único ScrollTrigger.refresh() após todo o setup (depois que todas as
+    // seções montaram e o layout assentou) — evita refresh por seção e
+    // leituras de layout intercaladas. Dois rAF garantem o frame pós-layout.
+    let raf1 = 0;
+    let raf2 = 0;
+    raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => ScrollTrigger.refresh());
+    });
 
     return () => {
-      window.clearTimeout(t);
-      window.removeEventListener("load", refresh);
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
       document.removeEventListener("click", onClick);
       gsap.ticker.remove(raf);
       lenis.destroy();

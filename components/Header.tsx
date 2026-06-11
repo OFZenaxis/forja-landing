@@ -38,13 +38,12 @@ export function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-[70]">
-      <div
-        ref={barRef}
-        className="transition-[background-color,box-shadow,backdrop-filter] duration-300 [&.is-scrolled]:border-b [&.is-scrolled]:border-line/60 [&.is-scrolled]:bg-page/70 [&.is-scrolled]:shadow-[0_8px_30px_-12px_rgba(124,58,237,0.18)] [&.is-scrolled]:backdrop-blur-xl"
-      >
+      <div ref={barRef} className="relative">
+        {/* Fundo/sombra já renderizados — só a opacity transiciona (composta) */}
+        <div className="scroll-bg pointer-events-none absolute inset-0 border-b border-line/60 bg-page/70 opacity-0 shadow-[0_8px_30px_-12px_rgba(124,58,237,0.18)] backdrop-blur-xl transition-opacity duration-300 [.is-scrolled_&]:opacity-100" />
         <nav
           aria-label="Principal"
-          className="container-px flex h-16 items-center justify-between gap-4"
+          className="container-px relative flex h-16 items-center justify-between gap-4"
         >
           <a href="#topo" aria-label="Forja — início">
             <Logo />

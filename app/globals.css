@@ -159,7 +159,6 @@ html.lenis body {
 }
 .char {
   display: inline-block;
-  will-change: transform;
 }
 
 /* Respeita prefers-reduced-motion: desliga todo loop contínuo */

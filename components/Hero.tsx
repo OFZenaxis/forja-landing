@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { StarIcon } from "@phosphor-icons/react/dist/ssr";
@@ -9,10 +9,6 @@ import { ScreenChecklist } from "./phone/ScreenChecklist";
 import { StoreBadges } from "./badges/StoreBadges";
 
 gsap.registerPlugin(ScrollTrigger);
-
-// Roda antes do paint no cliente (evita flash do título já posicionado).
-const useIsoLayoutEffect =
-  typeof document !== "undefined" ? useLayoutEffect : useEffect;
 
 const LINE1 = ["Treine", "como", "um", "jogo."];
 const LINE2 = ["Evolua", "de", "verdade."];
@@ -40,61 +36,25 @@ export function Hero() {
   const tiltRef = useRef<HTMLDivElement>(null);
   const floatRef = useRef<HTMLDivElement>(null);
 
-  useIsoLayoutEffect(() => {
+  // A entrada (título, parágrafo, badges, mockup) é 100% CSS (animate-fadeUp),
+  // então nada acima da dobra depende de JS para ficar visível (bom p/ LCP).
+  // O GSAP só cuida do float contínuo, do tilt 3D e do fade no scroll —
+  // efeitos que não escondem o conteúdo inicial.
+  useEffect(() => {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
       mm.add(
         {
-          reduce: "(prefers-reduced-motion: reduce)",
           ok: "(prefers-reduced-motion: no-preference)",
           desktop: "(min-width: 1024px) and (pointer: fine)",
         },
         (context) => {
-          const { reduce, desktop } = context.conditions as {
-            reduce: boolean;
+          const { ok, desktop } = context.conditions as {
             ok: boolean;
             desktop: boolean;
           };
-
-          if (reduce) {
-            gsap.set(".char, .hero-fade, .hero-phone", {
-              opacity: 1,
-              y: 0,
-              clearProps: "all",
-            });
-            return;
-          }
-
-          // Entrada coreografada
-          const tl = gsap.timeline({
-            defaults: { ease: "power4.out" },
-          });
-          tl.from(".line-1 .char", {
-            yPercent: 120,
-            duration: 0.9,
-            stagger: 0.025,
-          })
-            .from(
-              ".line-2 .char",
-              { yPercent: 120, duration: 0.9, stagger: 0.025 },
-              "-=0.65"
-            )
-            .from(
-              ".hero-fade",
-              { opacity: 0, y: 22, duration: 0.7, stagger: 0.12 },
-              "-=0.5"
-            )
-            .from(
-              ".hero-phone",
-              { opacity: 0, y: 40, scale: 0.92, duration: 1 },
-              "-=1"
-            )
-            .from(
-              ".hero-chip-float",
-              { opacity: 0, scale: 0.8, duration: 0.5, stagger: 0.12 },
-              "-=0.4"
-            );
+          if (!ok) return;
 
           // Float contínuo do mockup
           gsap.to(floatRef.current, {
@@ -103,7 +63,6 @@ export function Hero() {
             ease: "sine.inOut",
             repeat: -1,
             yoyo: true,
-            delay: 1.1,
           });
 
           // Zoom-out + fade sutil ao rolar
@@ -159,7 +118,7 @@ export function Hero() {
       >
         {/* Coluna de texto */}
         <div className="text-center lg:text-left">
-          <span className="hero-fade inline-flex items-center gap-2 rounded-full border border-line bg-surface/70 px-4 py-1.5 text-xs font-semibold text-accent shadow-soft backdrop-blur">
+          <span className="inline-flex animate-fadeUp items-center gap-2 rounded-full border border-line bg-surface/70 px-4 py-1.5 text-xs font-semibold text-accent shadow-soft backdrop-blur [animation-delay:60ms]">
             <span className="flex h-1.5 w-1.5 rounded-full bg-coral" />
             Novidade: temporadas e ligas entre alunos
           </span>
@@ -168,28 +127,34 @@ export function Hero() {
             aria-label="Treine como um jogo. Evolua de verdade."
             className="mt-5 text-[2.6rem] font-extrabold leading-[1.05] tracking-tight text-fg sm:text-6xl lg:text-[4.2rem]"
           >
-            <span aria-hidden="true" className="line-mask line-1">
+            <span
+              aria-hidden="true"
+              className="line-mask line-1 animate-fadeUp [animation-delay:120ms]"
+            >
               {LINE1.map((w) => (
                 <Word key={w} text={w} />
               ))}
             </span>
-            <span aria-hidden="true" className="line-mask line-2">
+            <span
+              aria-hidden="true"
+              className="line-mask line-2 animate-fadeUp [animation-delay:200ms]"
+            >
               {LINE2.map((w) => (
                 <Word key={w} text={w} gradient={w === "verdade."} />
               ))}
             </span>
           </h1>
 
-          <p className="hero-fade mx-auto mt-5 max-w-md text-base text-fg-muted sm:text-lg lg:mx-0">
+          <p className="mx-auto mt-5 max-w-md animate-fadeUp text-base text-fg-muted [animation-delay:300ms] sm:text-lg lg:mx-0">
             O app que transforma o treino do seu personal em missões diárias,
             streaks e conquistas. Constância vira hábito.
           </p>
 
-          <div className="hero-fade mt-7 flex flex-col items-center gap-4 sm:flex-row lg:items-start">
+          <div className="mt-7 flex animate-fadeUp flex-col items-center gap-4 [animation-delay:380ms] sm:flex-row lg:items-start">
             <StoreBadges />
           </div>
 
-          <div className="hero-fade mt-5 flex items-center justify-center gap-2 text-sm text-fg-muted lg:justify-start">
+          <div className="mt-5 flex animate-fadeUp items-center justify-center gap-2 text-sm text-fg-muted [animation-delay:460ms] lg:justify-start">
             <span className="flex">
               {Array.from({ length: 5 }).map((_, i) => (
                 <StarIcon key={i} size={16} weight="fill" className="text-sun" />
@@ -207,21 +172,24 @@ export function Hero() {
             <div className="blob-shape h-[26rem] w-[26rem] animate-spinSlow bg-[conic-gradient(from_0deg,#7C3AED,#A78BFA,#FF6B6B,#FFB020,#7C3AED)] opacity-30 blur-2xl sm:h-[30rem] sm:w-[30rem]" />
           </div>
 
-          <div ref={tiltRef} className="hero-phone preserve-3d relative z-10">
-            <div ref={floatRef} className="gpu">
-              <PhoneFrame>
-                <ScreenChecklist />
-              </PhoneFrame>
+          {/* Entrada do mockup em CSS (não depende de JS p/ ficar visível) */}
+          <div className="relative z-10 animate-fadeUp [animation-delay:200ms]">
+            <div ref={tiltRef} className="preserve-3d">
+              <div ref={floatRef} className="gpu">
+                <PhoneFrame>
+                  <ScreenChecklist />
+                </PhoneFrame>
+              </div>
             </div>
           </div>
 
           {/* Cards flutuantes */}
-          <div className="hero-chip-float absolute -left-2 top-[22%] z-20 rounded-2xl border border-line bg-surface/95 px-3 py-2 shadow-lift backdrop-blur sm:-left-4">
+          <div className="absolute -left-2 top-[22%] z-20 animate-fadeUp rounded-2xl border border-line bg-surface/95 px-3 py-2 shadow-lift backdrop-blur [animation-delay:560ms] sm:-left-4">
             <p className="text-[10px] font-medium text-fg-muted">Hoje</p>
             <p className="text-sm font-bold text-accent">+195 XP</p>
           </div>
 
-          <div className="hero-chip-float absolute -right-1 bottom-[18%] z-20 flex items-center gap-2 rounded-2xl border border-line bg-surface/95 px-3 py-2 shadow-lift backdrop-blur sm:-right-3">
+          <div className="absolute -right-1 bottom-[18%] z-20 flex animate-fadeUp items-center gap-2 rounded-2xl border border-line bg-surface/95 px-3 py-2 shadow-lift backdrop-blur [animation-delay:620ms] sm:-right-3">
             <span className="text-lg">🔥</span>
             <div>
               <p className="text-[10px] font-medium text-fg-muted">Streak</p>
