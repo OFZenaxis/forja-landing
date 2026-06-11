@@ -125,7 +125,7 @@ export function Hero() {
 
           <h1
             aria-label="Treine como um jogo. Evolua de verdade."
-            className="mt-5 text-[2.6rem] font-extrabold leading-[1.05] tracking-tight text-fg sm:text-6xl lg:text-[4.2rem]"
+            className="mt-5 text-[2.6rem] font-extrabold leading-[1.12] tracking-tight text-fg sm:text-6xl lg:text-[4.2rem]"
           >
             <span
               aria-hidden="true"

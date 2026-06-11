@@ -152,10 +152,14 @@ html.lenis body {
   transform: translateZ(0);
 }
 
-/* Máscara de linha para o reveal do hero (clip via overflow) */
+/* Linha do hero: clip com folga inferior para não cortar descendentes
+   (j, g, p) nem a última linha quando o texto quebra. O padding-bottom
+   estende a área de recorte e a margin negativa compensa o espaçamento. */
 .line-mask {
-  overflow: hidden;
   display: block;
+  overflow: hidden;
+  padding-bottom: 0.18em;
+  margin-bottom: -0.18em;
 }
 .char {
   display: inline-block;
