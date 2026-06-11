@@ -10,6 +10,7 @@ import { PinnedShowcase } from "@/components/PinnedShowcase";
 import { Pricing } from "@/components/Pricing";
 import { SectionCurve } from "@/components/SectionCurve";
 import { Testimonials } from "@/components/Testimonials";
+import { Faq } from "@/components/Faq";
 import { CtaBanner } from "@/components/CtaBanner";
 import { Blog } from "@/components/Blog";
 import { Footer } from "@/components/Footer";
@@ -30,6 +31,7 @@ export default function Home() {
         <Pricing />
         <SectionCurve />
         <Testimonials />
+        <Faq />
         <SectionCurve flip />
         <CtaBanner />
         <Blog />
