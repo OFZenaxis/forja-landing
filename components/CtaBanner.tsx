@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PhoneFrame } from "./phone/PhoneFrame";
 import { ScreenAchievements } from "./phone/ScreenAchievements";
-import { StoreBadges } from "./badges/StoreBadges";
+import { WaitlistForm } from "./WaitlistForm";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -61,15 +61,12 @@ export function CtaBanner() {
               Experimente grátis
             </h2>
             <p className="mx-auto mt-4 max-w-md text-white/85 lg:mx-0">
-              Baixe o Forja, conclua sua primeira missão hoje e sinta a diferença
-              de treinar com um objetivo claro todos os dias.
+              Estamos abrindo as primeiras vagas. Entre na lista de espera e
+              seja avisado em primeira mão quando o Forja chegar.
             </p>
-            <div className="mt-7 flex flex-col items-center gap-4 sm:flex-row lg:items-start">
-              <StoreBadges />
+            <div className="mt-7 flex justify-center lg:justify-start">
+              <WaitlistForm />
             </div>
-            <p className="mt-4 text-sm text-white/70">
-              Sem cartão de crédito · cancele quando quiser
-            </p>
           </div>
 
           <div className="flex justify-center lg:justify-end">
