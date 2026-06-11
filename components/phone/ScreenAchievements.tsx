@@ -62,10 +62,13 @@ export function ScreenAchievements() {
 
       <div className="flex items-center justify-between px-5 pt-4">
         <div>
-          <h3 className="text-base font-bold text-ink">Conquistas</h3>
+          <p className="text-base font-bold text-ink">Conquistas</p>
           <p className="text-[11px] text-muted">14 de 24 desbloqueadas</p>
         </div>
-        <button className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-600 text-white shadow-soft">
+        <button
+          tabIndex={-1}
+          className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-600 text-white shadow-soft"
+        >
           <ShareNetworkIcon size={15} weight="bold" />
         </button>
       </div>
@@ -74,6 +77,7 @@ export function ScreenAchievements() {
       <div className="mx-5 mt-3 flex items-center gap-3 rounded-3xl bg-gradient-to-br from-brand-600 to-brand-500 p-4 text-white shadow-soft">
         <button
           type="button"
+          tabIndex={-1}
           title="🔥"
           aria-label="Soltar faíscas"
           onClick={(e) => particleBurst(e.currentTarget)}

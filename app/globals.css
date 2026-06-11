@@ -8,7 +8,7 @@
   --surface: 255 255 255; /* #FFFFFF */
   --surface-2: 245 243 255; /* #F5F3FF */
   --fg: 30 27 46; /* #1E1B2E */
-  --fg-muted: 107 101 128; /* #6B6580 */
+  --fg-muted: 86 81 99; /* #565163 — escurecido p/ contraste AA */
   --line: 236 233 251; /* #ECE9FB */
   --accent: 124 58 237; /* #7C3AED */
   --accent-soft: 237 233 254; /* #EDE9FE */
@@ -20,7 +20,7 @@ html.dark {
   --surface: 31 18 64; /* #1F1240 */
   --surface-2: 40 23 84; /* #281754 */
   --fg: 244 241 255; /* #F4F1FF */
-  --fg-muted: 173 163 204; /* #ADA3CC */
+  --fg-muted: 190 181 220; /* #BEB5DC — clareado p/ contraste AA no escuro */
   --line: 52 38 92; /* #34265C */
   --accent: 167 139 250; /* #A78BFA brand-400 (contraste AA no escuro) */
   --accent-soft: 49 31 92; /* #311F5C */

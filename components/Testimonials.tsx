@@ -8,7 +8,15 @@ import { TESTIMONIALS, type Testimonial } from "@/lib/content";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function Card({ t, dim = false }: { t: Testimonial; dim?: boolean }) {
+function Card({
+  t,
+  dim = false,
+  hidden = false,
+}: {
+  t: Testimonial;
+  dim?: boolean;
+  hidden?: boolean;
+}) {
   const initial = t.name
     .split(" ")
     .map((n) => n[0])
@@ -17,6 +25,7 @@ function Card({ t, dim = false }: { t: Testimonial; dim?: boolean }) {
 
   return (
     <figure
+      aria-hidden={hidden || undefined}
       className={`flex w-[300px] shrink-0 flex-col rounded-4xl border border-line bg-surface p-6 shadow-soft transition-transform duration-300 hover:-translate-y-1 sm:w-[340px] ${
         dim ? "opacity-90" : ""
       }`}
@@ -43,7 +52,7 @@ function Card({ t, dim = false }: { t: Testimonial; dim?: boolean }) {
           <p className="text-xs text-fg-muted">
             {t.role} · {t.location}
           </p>
-          <p className="text-[11px] text-fg-muted/70">{t.date}</p>
+          <p className="text-[11px] text-fg-muted">{t.date}</p>
         </div>
       </figcaption>
     </figure>
@@ -61,12 +70,17 @@ function Row({
   rowRef: React.RefObject<HTMLDivElement>;
   dim?: boolean;
 }) {
-  // duplica para o loop ser contínuo
+  // duplica para o loop ser contínuo; a 2ª metade é decorativa (aria-hidden)
   const loop = [...items, ...items];
   return (
     <div className="flex w-max gap-5 px-2" ref={rowRef}>
       {loop.map((t, i) => (
-        <Card key={`${t.name}-${i}`} t={t} dim={dim} />
+        <Card
+          key={`${t.name}-${i}`}
+          t={t}
+          dim={dim}
+          hidden={i >= items.length}
+        />
       ))}
     </div>
   );

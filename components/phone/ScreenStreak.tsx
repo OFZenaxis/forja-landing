@@ -50,6 +50,7 @@ export function ScreenStreak() {
       <div className="flex flex-1 flex-col items-center px-5 pt-6 text-center">
         <button
           type="button"
+          tabIndex={-1}
           title="🔥"
           aria-label="Soltar faíscas"
           onClick={(e) => particleBurst(e.currentTarget)}

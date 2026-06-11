@@ -55,7 +55,7 @@ export function ScreenRadar() {
       <StatusBar />
 
       <div className="px-5 pt-4">
-        <h3 className="text-base font-bold text-ink">Radar do shape</h3>
+        <p className="text-base font-bold text-ink">Radar do shape</p>
         <p className="text-[11px] text-muted">Abril vs. Fevereiro</p>
       </div>
 

@@ -55,7 +55,7 @@ export function ScreenChecklist() {
       <div className="px-5 pt-4">
         <p className="text-[11px] font-medium text-muted">Bom treino,</p>
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-bold text-ink">Mariana</h3>
+          <p className="text-lg font-bold text-ink">Mariana</p>
           <span className="inline-flex items-center gap-1 rounded-full bg-sun/15 px-2.5 py-1 text-[11px] font-semibold text-[#B45309]">
             <FireIcon size={13} weight="fill" className="text-sun" />
             96 dias

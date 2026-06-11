@@ -56,9 +56,9 @@ export function ScreenLoads() {
           <BarbellIcon size={18} weight="fill" className="text-brand-600" />
         </div>
         <div>
-          <h3 className="text-sm font-bold leading-tight text-ink">
+          <p className="text-sm font-bold leading-tight text-ink">
             Agachamento livre
-          </h3>
+          </p>
           <p className="text-[10px] text-muted">Quadríceps · Hoje</p>
         </div>
       </div>
