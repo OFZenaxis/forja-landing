@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PhoneFrame } from "./phone/PhoneFrame";
 import { ScreenAchievements } from "./phone/ScreenAchievements";
 import { WaitlistForm } from "./WaitlistForm";
+import { isCaptureMode } from "../lib/captureMode";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,13 +34,16 @@ export function CtaBanner() {
           },
         }
       );
-      gsap.to(phoneRef.current, {
-        y: -14,
-        duration: 3,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-      });
+      // Float contínuo do mockup — desligado no modo captura (loop por tempo).
+      if (!isCaptureMode()) {
+        gsap.to(phoneRef.current, {
+          y: -14,
+          duration: 3,
+          ease: "sine.inOut",
+          repeat: -1,
+          yoyo: true,
+        });
+      }
     }, cardRef);
 
     return () => ctx.revert();

@@ -11,6 +11,7 @@ import {
 import { PhoneFrame } from "./phone/PhoneFrame";
 import { ScreenChecklist } from "./phone/ScreenChecklist";
 import { StoreBadges } from "./badges/StoreBadges";
+import { isCaptureMode } from "../lib/captureMode";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,14 +61,16 @@ export function Hero() {
           };
           if (!ok) return;
 
-          // Float contínuo do mockup
-          gsap.to(floatRef.current, {
-            y: -18,
-            duration: 3.2,
-            ease: "sine.inOut",
-            repeat: -1,
-            yoyo: true,
-          });
+          // Float contínuo do mockup — desligado no modo captura (loop por tempo).
+          if (!isCaptureMode()) {
+            gsap.to(floatRef.current, {
+              y: -18,
+              duration: 3.2,
+              ease: "sine.inOut",
+              repeat: -1,
+              yoyo: true,
+            });
+          }
 
           // Zoom-out + fade sutil ao rolar
           gsap.to(innerRef.current, {
